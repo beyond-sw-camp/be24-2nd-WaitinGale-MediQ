@@ -1,0 +1,75 @@
+<script setup>
+import { reactive } from 'vue'
+// import api from '@/api/user'
+import { useRouter } from 'vue-router'
+// import useAuthStore from '@/stores/useAuthStore'
+
+const router = useRouter()
+
+const loginForm = reactive({
+  email: '',
+  password: '',
+})
+
+// const authStore = useAuthStore()
+
+const login = async () => {
+  // [추가] 빈칸 검사 (선택 사항이지만 추천)
+  if (!loginForm.email || !loginForm.password) {
+    alert("이메일과 비밀번호를 입력해주세요.");
+    return;
+  }
+
+  // [수정 1] try-catch로 감싸서 에러 방지
+  try {
+    const res = await api.login(loginForm)
+
+    if (res.status == 200) {
+      authStore.login(JSON.stringify(res.data))
+      // [수정 2] '/index' 대신 '/' (메인)으로 이동
+      router.push('/') 
+    } 
+  } catch (error) {
+    console.error(error);
+    alert('아이디와 비밀번호를 확인해보세요.')
+  }
+}
+</script>
+
+<template>
+    <div class="bg-white flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-md p-6">
+        <div class="text-center mb-10">
+            <RouterLink to="/" class="inline-block mb-6">
+                <img src="@/assets/image/mediQ_logo.png" alt="MediQ Logo" class="w-16 h-16 object-contain mx-auto">
+            </RouterLink>
+            <h1 class="text-2xl font-bold mb-2">로그인</h1>
+            <p class="text-sm text-slate-400">서비스 이용을 위해 로그인해주세요.</p>
+        </div>
+        
+
+            <div class="bg-slate-50 rounded-2xl flex items-center px-4 py-3 border border-slate-100">
+                <i class="fa-solid fa-envelope text-slate-300 mr-3"></i>
+                <input v-model="loginForm.email" type="email" placeholder="이메일" class="bg-transparent w-full outline-none text-sm">
+            </div>
+            <div class="bg-slate-50 rounded-2xl flex items-center px-4 py-3 border border-slate-100">
+                <i class="fa-solid fa-lock text-slate-300 mr-3"></i>
+                <input v-model="loginForm.password" type="password" placeholder="비밀번호" class="bg-transparent w-full outline-none text-sm">
+            </div>
+            <button type="submit" id="login-btn" class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 transition shadow-lg">로그인</button>
+
+
+        <div class="flex justify-center gap-4 mt-8 text-xs font-bold">
+                <RouterLink to="/signup" class="text-slate-400 hover:text-slate-600">회원가입</RouterLink>
+                <span class="text-slate-200">|</span>
+                <RouterLink to="/user/UserFindId" class="text-slate-400 hover:text-slate-600">아이디 찾기</RouterLink>
+                <span class="text-slate-200">|</span>
+                <RouterLink to="/user/UserFindpassword" class="text-slate-400 hover:text-slate-600">비밀번호 찾기</RouterLink>
+        </div>
+    </div>
+    </div>
+</template>
+
+<style scoped>
+
+</style>

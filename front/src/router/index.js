@@ -54,6 +54,13 @@ const router = createRouter({
       meta: { title: '문진표 작성 페이지' },
       component: () => import('@/views/user/Precheck.vue'),
     },
+
+    {
+      name: 'Reservation',
+      path: '/reservation',
+      meta: { title: '병원 예약하기' },
+      component: () => import('@/views/user/Reservation.vue'),
+    },
   ],
 })
 

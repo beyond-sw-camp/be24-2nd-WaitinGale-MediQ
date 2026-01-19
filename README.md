@@ -1,5 +1,5 @@
 <p align="center">
-<img width="500" alt="ChatGPT_Image_2025_12_30_11_24_18" src="https://github.com/user-attachments/assets/6857892f-f320-48f8-8ee4-4be17a77fc10" />
+<img width="500" alt="ChatGPT_Image_2025_12_30_11_24_18" height="1024" alt="Image" src="https://github.com/user-attachments/assets/b35ef6cd-9703-4370-999a-604ed04e73e3" />
 
 # 
 
@@ -71,5 +71,6 @@
 
 ## 📍 요구사항 정의서
 <summary>시스템 아키텍쳐 펼쳐보기</summary>
+
 
 

@@ -3,13 +3,17 @@
 </script>
 
 <template>
-    <header class="h-16 bg-white/90 backdrop-blur-md border-b border-slate-200 flex items-center justify-between  z-10 shrink-0">
-      <button class="md:hidden text-slate-500 mr-4">
-        <i class="fa-solid fa-bars text-xl"></i>
-      </button>
 
-      <div class="hidden md:flex w-60 flex-col bg-white z-20">
-         <div class="w-64 h-16 flex items-center px-10 border-b border-slate-100">
+
+  <header class="h-16 bg-white/90 backdrop-blur-md border-b border-slate-200 flex items-center justify-between px-6 z-[200] shrink-0 relative">
+    
+    <button class="md:hidden text-slate-500 mr-4">
+      <i class="fa-solid fa-bars text-xl"></i>
+    </button>
+
+    <div class="hidden md:flex w-60 flex-col bg-white z-20">
+         <div class="w-64 h-16 flex items-center px-0 border-b border-slate-100">
+
             <a href="#" class="flex items-center gap-2">
              <img src="@/assets/image/mediQ_logo.png" alt="Logo" class="w-8 h-8 object-contain" @error="e => (e.target.src = 'https://via.placeholder.com/32')">
              <span class="text-xl font-black tracking-tight text-slate-900">MediQ</span>
@@ -25,7 +29,9 @@
             <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
           </div>
 
+
           <input type="text" id="search-keyword"
+
                  onkeyup="if(window.event.keyCode==13){searchHospitals()}"
                  class="block w-[800px] pl-10 pr-28 py-2.5 border border-slate-200 rounded-2xl bg-white shadow-sm
                         text-slate-900 placeholder-slate-400 padding
@@ -38,7 +44,8 @@
                          text-xs font-black text-white bg-indigo-600 hover:bg-indigo-700 transition shadow-sm">
             검색
           </button>
-        </div>np
+
+        </div>
       </div>
 
       <div class="flex items-center gap-4 px-4 ml-20">

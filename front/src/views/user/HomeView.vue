@@ -22,7 +22,7 @@
 
             <button v-if="!isListOpen" 
                     @click="isListOpen = true"
-                    class="absolute top-4 right-4 z-[50] bg-white border border-slate-200 text-slate-700 
+                    class="absolute top-4 right-12 z-[50] bg-white border border-slate-200 text-slate-700 
                            px-4 py-2.5 rounded-xl shadow-lg font-bold text-sm hover:bg-slate-50 transition flex items-center gap-2">
               <i class="fa-solid fa-list-ul text-indigo-600"></i> 목록 보기
             </button>
@@ -46,7 +46,7 @@
         <div v-else-if="mode === 'reservation'" class="flex-1 bg-white p-10 overflow-y-auto z-10">
            <h2 class="text-2xl font-black text-slate-900 mb-6">나의 예약 내역</h2>
            <div class="space-y-4">
-             <div class="p-12 border bg-[#faf7f2] border-slate-200 rounded-3xl bg-slate-50 text-center text-slate-500 flex flex-col items-center justify-center gap-4">
+             <div class="p-12 border border-slate-200 rounded-3xl bg-slate-50 text-center text-slate-500 flex flex-col items-center justify-center gap-4">
                <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm">
                  <i class="fa-regular fa-calendar-check text-2xl text-indigo-400"></i>
                </div>
@@ -69,7 +69,27 @@ import MainMap from '@/components/MainMap.vue';
 import MainList from '@/components/MainList.vue';
 import Booking from '@/components/Waiting.vue'
 
-const mode = ref('hospital'); 
+
+
+import { useRoute, useRouter } from 'vue-router'
+
+const route = useRoute()
+const router = useRouter()
+const mode = ref('hospital')
+
+onMounted(() => {
+  if (route.query.mode) {
+    mode.value = route.query.mode
+    
+    router.replace({ path: '/' })
+  }
+})
+
+
+
+
+
+
 const mapRef = ref(null);
 const places = ref([]);
 const isListOpen = ref(true);

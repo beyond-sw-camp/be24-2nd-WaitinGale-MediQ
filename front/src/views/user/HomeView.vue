@@ -22,7 +22,7 @@
 
             <button v-if="!isListOpen" 
                     @click="isListOpen = true"
-                    class="absolute top-4 right-4 z-[50] bg-white border border-slate-200 text-slate-700 
+                    class="absolute top-4 right-12 z-[50] bg-white border border-slate-200 text-slate-700 
                            px-4 py-2.5 rounded-xl shadow-lg font-bold text-sm hover:bg-slate-50 transition flex items-center gap-2">
               <i class="fa-solid fa-list-ul text-indigo-600"></i> 목록 보기
             </button>

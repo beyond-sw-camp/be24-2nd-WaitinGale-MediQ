@@ -1,8 +1,8 @@
 <script setup>
 import { reactive } from 'vue'
-// import api from '@/api/user'
+import api from '@/api/user'
 import { useRouter } from 'vue-router'
-// import useAuthStore from '@/stores/useAuthStore'
+import useAuthStore from '@/stores/useAuthStore'
 
 const router = useRouter()
 
@@ -11,7 +11,7 @@ const loginForm = reactive({
   password: '',
 })
 
-// const authStore = useAuthStore()
+const authStore = useAuthStore()
 
 const login = async () => {
   // [추가] 빈칸 검사 (선택 사항이지만 추천)
@@ -20,20 +20,22 @@ const login = async () => {
     return;
   }
 
-  // [수정 1] try-catch로 감싸서 에러 방지
+  //  try-catch로 감싸서 에러 방지
   try {
     const res = await api.login(loginForm)
 
     if (res.status == 200) {
       authStore.login(JSON.stringify(res.data))
-      // [수정 2] '/index' 대신 '/' (메인)으로 이동
+      //  '/index' 대신 '/' (메인)으로 이동
       router.push('/') 
     } 
   } catch (error) {
-    console.error(error);
+    console.log(error);
     alert('아이디와 비밀번호를 확인해보세요.')
   }
 }
+
+
 </script>
 
 <template>
@@ -48,23 +50,24 @@ const login = async () => {
         </div>
         
 
+        <form @submit.prevent="login" class="space-y-4 mb-8">
             <div class="bg-slate-50 rounded-2xl flex items-center px-4 py-3 border border-slate-100">
                 <i class="fa-solid fa-envelope text-slate-300 mr-3"></i>
-                <input v-model="loginForm.email" type="email" placeholder="이메일" class="bg-transparent w-full outline-none text-sm">
+                <input v-model="loginForm.email" type="email" placeholder="이메일" class="bg-transparent w-full outline-none text-sm" required>
             </div>
             <div class="bg-slate-50 rounded-2xl flex items-center px-4 py-3 border border-slate-100">
                 <i class="fa-solid fa-lock text-slate-300 mr-3"></i>
-                <input v-model="loginForm.password" type="password" placeholder="비밀번호" class="bg-transparent w-full outline-none text-sm">
+                <input v-model="loginForm.password" type="password" placeholder="비밀번호" class="bg-transparent w-full outline-none text-sm" required>
             </div>
             <button type="submit" id="login-btn" class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 transition shadow-lg">로그인</button>
-
+        </form>
 
         <div class="flex justify-center gap-4 mt-8 text-xs font-bold">
                 <RouterLink to="/signup" class="text-slate-400 hover:text-slate-600">회원가입</RouterLink>
                 <span class="text-slate-200">|</span>
-                <RouterLink to="/user/UserFindId" class="text-slate-400 hover:text-slate-600">아이디 찾기</RouterLink>
+                <RouterLink to="/UserFindId" class="text-slate-400 hover:text-slate-600">아이디 찾기</RouterLink>
                 <span class="text-slate-200">|</span>
-                <RouterLink to="/user/UserFindpassword" class="text-slate-400 hover:text-slate-600">비밀번호 찾기</RouterLink>
+                <RouterLink to="/UserFindpassword" class="text-slate-400 hover:text-slate-600">비밀번호 찾기</RouterLink>
         </div>
     </div>
     </div>

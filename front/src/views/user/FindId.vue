@@ -45,6 +45,7 @@ const findId = () => {
                     <input type="tel" placeholder="010-0000-0000" class="w-full mt-1.5 px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:border-indigo-500 focus:bg-white transition-all text-sm font-medium">
                 </div>
                 
+                
                 <button @click="findId" class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 transition shadow-lg">
                     아이디 확인
                 </button>

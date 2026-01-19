@@ -41,11 +41,18 @@ const router = createRouter({
       component: () => import('../views/UserMain.vue'), // 레이지 로딩 유지
     },
 
-      {
+    {
       name: 'HomeView',
       path: '/HomeView',
       meta: { title: 'MEDI-Q : 메인 페이지' },
       component: () => import('@/views/user/HomeView.vue'),
+    },
+
+    {
+      name: 'Precheck',
+      path: '/precheck',
+      meta: { title: '문진표 작성 페이지' },
+      component: () => import('@/views/user/Precheck.vue'),
     },
   ],
 })

@@ -156,7 +156,7 @@
             </button>
             
             <button v-if="mode === 'hospital'" 
-                    @click="goToIntake" 
+                    @click="goToPrecheck" 
                     class="w-full bg-slate-900 text-white py-3 rounded-2xl font-black hover:bg-slate-800 flex items-center justify-center gap-2 text-sm">
               <span>접수/ 예약</span> <i class="fa-solid fa-arrow-right text-xs"></i>
             </button>
@@ -431,7 +431,7 @@ const panToMyLocation = () => {
 
 const openKakaoWay = (h) => window.open(`https://map.kakao.com/link/to/${h.name},${h.lat},${h.lng}`);
 const callHospital = (phone) => window.location.href = `tel:${phone}`;
-const goToIntake = () => router.push('/intake');
+const goToPrecheck = () => router.push('/precheck');
 
 const openCard = (place) => { selectedCard.value = place; if(map.value) map.value.panTo(new window.kakao.maps.LatLng(place.lat, place.lng)); displayMarkers([place]); emit('select-hospital', place); };
 const closeCard = () => { 

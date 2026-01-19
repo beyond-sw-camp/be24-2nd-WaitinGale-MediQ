@@ -94,7 +94,7 @@
               </div>
             </div>
             <button
-              @click="registerWaitlist"
+              @click="goToReservationHome"
               class="px-4 py-2 bg-orange-500 text-white text-sm font-bold rounded-xl hover:bg-orange-600 transition"
             >
               등록하기
@@ -184,9 +184,22 @@
 <script setup>
 import { ref } from 'vue'
 
+// 메인 페이지로 이동한 후 reservation 이 보이도록
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const goToReservationHome = () => {
+  router.push({
+    path: '/',
+    query: { mode: 'reservation' }
+  })
+}
+// 여기까지
 const selectedDate = ref(14)
 const selectedTime = ref(null)
 const selectedDoctor = ref(1)
+
 
 const dates = [
   { label: '오늘', day: 14 },

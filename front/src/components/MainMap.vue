@@ -171,6 +171,7 @@
 import { onMounted, ref, defineExpose, defineEmits, watch } from 'vue';
 import { useRouter } from 'vue-router';
 
+
 // props로 mode 받기
 const props = defineProps(['favorites', 'mode']);
 const emit = defineEmits(['update-hospitals', 'toggle-favorite', 'switch-mode-to-pharmacy', 'switch-mode-to-hospital', 'select-hospital']);

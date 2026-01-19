@@ -50,7 +50,8 @@
                <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm">
                  <i class="fa-regular fa-calendar-check text-2xl text-indigo-400"></i>
                </div>
-               <p class="font-bold">아직 예약된 내역이 없습니다.</p>
+               <!-- <p class="font-bold">아직 예약된 내역이 없습니다.</p> -->
+              <Booking />  
              </div>
            </div>
         </div>
@@ -66,6 +67,7 @@ import LeftSideBar from '@/components/layout/LeftSideBar.vue';
 import Header from '@/components/layout/Header.vue';
 import MainMap from '@/components/MainMap.vue';
 import MainList from '@/components/MainList.vue';
+import Booking from '@/components/Waiting.vue'
 
 const mode = ref('hospital'); 
 const mapRef = ref(null);

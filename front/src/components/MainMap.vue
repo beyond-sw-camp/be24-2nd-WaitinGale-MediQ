@@ -6,7 +6,7 @@
       <span class="text-slate-400 font-semibold animate-pulse">지도 로딩 중...</span>
     </div>
 
-    <div class="absolute top-4 left-1/2 -translate-x-1/2 z-[50] transition-all duration-300 ease-out pointer-events-none"
+    <div class="absolute top-4 left-1/2 -translate-x-1/2 z-[70] transition-transform duration-300 ease-out pointer-events-none"
          :class="mode === 'hospital' ? 'w-[95%] md:w-[680px]' : 'w-max'">
       
       <div class="glass rounded-[24px] px-4 py-2.5 shadow-lg flex items-center justify-between gap-3 relative pointer-events-auto">

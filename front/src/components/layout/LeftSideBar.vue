@@ -1,5 +1,16 @@
 <script setup>
+import { ref } from 'vue';
 
+// 부모에게 "메뉴 바꼈다"고 알리기 위함
+const emit = defineEmits(['change-tab']);
+
+// 현재 선택된 탭 상태
+const currentTab = ref('hospital');
+
+const changeTab = (tabName) => {
+  currentTab.value = tabName;
+  emit('change-tab', tabName); // 부모에게 알림
+};
 </script>
 
 <template>
@@ -71,7 +82,19 @@
         <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-500">
           <i class="fa-solid fa-user"></i>
         </div>
-        <div>
+
+        <div v-if="user">
+          <p class="text-sm font-extrabold text-slate-900">
+            {{ user.username }}
+          </p>
+         <button
+           @click="logout"
+          class="text-xs text-red-500 hover:underline"
+         >로그아웃
+        </button>
+         </div>
+
+        <div v-else>
           <p class="text-sm font-extrabold text-slate-900">게스트</p>
           <RouterLink to="/login" class="text-xs text-indigo-600 hover:underline">
             로그인하기

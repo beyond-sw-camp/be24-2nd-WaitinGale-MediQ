@@ -79,11 +79,12 @@
   <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"/>
 </p>
 
-## 📍 프로젝트 기획안
+## 🖥 Fiqma 
 <summary>시스템 아키텍쳐 펼쳐보기</summary>
 
 ## 📍 요구사항 정의서
 <summary>시스템 아키텍쳐 펼쳐보기</summary>
+
 
 
 

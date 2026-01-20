@@ -90,6 +90,24 @@
 <p align="center">
 https://github.com/user-attachments/assets/6570bccd-64ec-468d-b7d7-9c8bb7f6b3f3
 
+<details>
+<summary>로그인 기능 구현 영상</summary>
+
+<details>
+<summary>주변 병원 찾기 기능 구현 영상</summary>
+
+<details>
+<summary>병원 예약 및 대기열 확인 기능 구현 영상</summary>
+
+<details>
+<summary>주변 약국 찾기 기능 구현 영상</summary>
+
+<details>
+<summary>마이페이지 관리 기능 구현 영상</summary>
+
+
+
+
 
 
 

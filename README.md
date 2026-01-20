@@ -80,10 +80,11 @@
 </p>
 
 ## 🖥 Fiqma 
-<summary>시스템 아키텍쳐 펼쳐보기</summary>
+[Fiqma] <https://www.figma.com/design/EdBkF3CGfamwsIXKMQiJQq/waitinGale?node-id=0-1&t=wz3RvfQ1GRJDqk0B-1/>
 
 ## 📍 요구사항 정의서
 <summary>시스템 아키텍쳐 펼쳐보기</summary>
+
 
 
 

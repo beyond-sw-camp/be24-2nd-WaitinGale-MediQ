@@ -43,7 +43,7 @@
           </transition>
         </template>
 
-        <div v-else-if="mode === 'reservation'" class="flex-1 bg-white p-10 overflow-y-auto z-10">
+        <div v-else-if="mode === 'reservation'" class="flex-1 bg-white p-10 overflow-y-auto z-10 md:pl-72">
            <!-- <h2 class="text-2xl font-black text-slate-900 mb-6">나의 예약 내역</h2> -->
            <div class="space-y-4">
              <!-- <div class="p-12 border border-slate-200 rounded-3xl bg-slate-50 text-center text-slate-500 flex flex-col items-center justify-center gap-4"> -->

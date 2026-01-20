@@ -487,7 +487,6 @@ watch(() => props.initialData, () => {
 
   .right-panel {
     flex: 1;
-    height: 100%;
     overflow: hidden; 
   }
 }
@@ -855,6 +854,7 @@ watch(() => props.initialData, () => {
 .right-panel {
   background: white;
   border-radius: 20px;
+  height: 458px;
   border: 1px solid #E2E8F0;
   display: flex;
   flex-direction: column;

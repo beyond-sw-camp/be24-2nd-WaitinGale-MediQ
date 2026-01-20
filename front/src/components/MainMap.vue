@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full relative overflow-hidden">
+  <div class="w-full h-full relative overflow-hidden md:pl-64">
     <div ref="mapContainer" class="w-full h-full bg-slate-100"></div>
     
     <div v-if="!isLoaded" class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
@@ -9,7 +9,7 @@
     <div class="absolute top-4 left-1/2 -translate-x-1/2 z-[70] transition-transform duration-300 ease-out pointer-events-none"
          :class="mode === 'hospital' ? 'w-[95%] md:w-[680px]' : 'w-max'">
       
-      <div class="glass rounded-[24px] px-4 py-2.5 shadow-lg flex items-center justify-between gap-3 relative pointer-events-auto">
+      <div class="ml-40 glass rounded-[24px] px-4 py-2.5 shadow-lg flex items-center justify-between gap-3 relative pointer-events-auto">
   
         <div class="flex items-center gap-2 shrink-0">
           

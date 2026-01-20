@@ -201,8 +201,8 @@ watch(() => props.initialData, () => {
 </script>
 
 <template>
-  <div class="app-container">
-    <header class="app-header">
+  <!-- <div class="app-container md:pl-96"> -->
+    <!-- <header class="app-header">
       <div class="header-content">
         <div class="brand">
           <div class="logo-icon"><i class="fa-solid fa-notes-medical"></i></div>
@@ -213,9 +213,10 @@ watch(() => props.initialData, () => {
           {{ connected ? '연결됨' : '연결 끊김' }}
         </div>
       </div>
-    </header>
+    </header> -->
 
-    <main class="main-layout">
+    <main class="main-layout md:pl-96 ">
+  
       
       <section class="left-panel">
         
@@ -365,7 +366,7 @@ watch(() => props.initialData, () => {
       </section>
 
     </main>
-  </div>
+  
 </template>
 
 <style scoped>

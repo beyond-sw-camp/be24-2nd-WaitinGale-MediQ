@@ -194,36 +194,28 @@ const sortMode = ref('distance');
 const currentDept = ref('all');
 
 
-const depts = [
-  'all', 
-  '내과', 
-  '이비인후과', 
-  '정형외과', 
-  '소아청소년과', 
-  '피부과', 
-  '치과',
-  '산부인과',
-  '안과',
-  '가정의학과',
-  '비뇨의학과',
-  '한의원'
-];
 
 const rawData = ref([]);
 
 const router = useRouter();
 
+const depts = ['all', '내과', '이비인후과', '정형외과', '소아청소년과', '피부과', '치과', '산부인과', '안과', '가정의학과', '비뇨의학과', '한의원'];
+
+const symptomDB = [
+  { dept: "내과", keywords: ["배", "복통", "설사", "구토", "체했", "속쓰림", "소화불량", "위염", "장염", "변비", "메스꺼움", "울렁", "명치", "가슴통증", "혈압", "당뇨", "몸살", "오한", "열", "감기기운"] },
+  { dept: "이비인후과", keywords: ["코", "목", "귀", "감기", "비염", "독감", "기침", "가래", "콧물", "코막힘", "재채기", "편도", "목아픔", "인후통", "중이염", "이명", "축농증", "어지러움"] },
+  { dept: "정형외과", keywords: ["뼈", "골절", "허리", "디스크", "관절", "무릎", "어깨", "손목", "발목", "인대", "접질", "삠", "근육통", "담", "타박상", "물리치료", "거북목", "손가락"] },
+  { dept: "치과", keywords: ["이", "치통", "잇몸", "사랑니", "충치", "스케일링", "임플란트", "시린", "교정", "턱관절", "발치", "신경치료", "치아"] },
+  { dept: "피부과", keywords: ["피부", "여드름", "두드러기", "아토피", "습진", "가려움", "점", "사마귀", "티눈", "탈모", "화상", "무좀", "대상포진", "뾰루지", "알레르기"] },
+  { dept: "안과", keywords: ["눈", "시력", "다래끼", "충혈", "안구건조", "눈물", "따가움", "렌즈", "라식", "라섹", "백내장", "녹내장", "눈병", "결막염"] },
+  { dept: "소아청소년과", keywords: ["아이", "아기", "접종", "영유아", "신생아", "육아", "발열", "성장", "수족구"] },
+  { dept: "산부인과", keywords: ["임신", "생리", "여성", "질염", "방광염", "피임", "자궁", "출산", "산모", "갱년기", "월경", "부정출혈"] },
+  { dept: "신경과", keywords: ["두통", "편두통", "어지럼증", "치매", "손떨림", "마비", "저림"] },
+  { dept: "정신건강의학과", keywords: ["우울", "불면", "잠", "스트레스", "공황", "불안", "상담", "기억력"] },
+  { dept: "비뇨의학과", keywords: ["소변", "요로결석", "전립선", "혈뇨", "성병", "포경"] }
+];
+
 const getDepartmentBySymptom = (inputText) => {
-  const symptomDB = [
-    { keywords: ["배", "복통", "설사", "구토", "체했", "속쓰림"], dept: "내과" },
-    { keywords: ["이", "치통", "잇몸", "사랑니"], dept: "치과" },
-    { keywords: ["뼈", "골절", "허리", "디스크", "관절"], dept: "정형외과" },
-    { keywords: ["코", "목", "귀", "감기", "비염"], dept: "이비인후과" },
-    { keywords: ["눈", "시력", "다래끼"], dept: "안과" },
-    { keywords: ["피부", "여드름", "두드러기"], dept: "피부과" },
-    { keywords: ["아이", "아기", "접종"], dept: "소아청소년과" },
-    { keywords: ["임신", "생리", "여성"], dept: "산부인과" }
-  ];
   for (let item of symptomDB) {
     for (let key of item.keywords) {
       if (inputText.includes(key)) return item.dept;
@@ -447,7 +439,7 @@ const closeCard = () => {
 const resizeMap = () => { if(map.value) { map.value.relayout(); map.value.setCenter(map.value.getCenter()); } };
 const resetToGeneralMode = () => { previousHospital.value = null; selectedCard.value = null; reSearch(); };
 
-defineExpose({ searchPlaces, openCard, resizeMap, resetToGeneralMode });
+defineExpose({ searchPlaces, openCard, resizeMap, closeCard, resetToGeneralMode });
 
 const searchNearbyPharmacies = (hospital) => {
   if (!hospital) return;
@@ -486,11 +478,6 @@ const returnToHospital = () => {
 <style scoped>
 .glass { background: rgba(255,255,255,.90); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.65); }
 .glass-strong { background: rgba(255,255,255,.98); backdrop-filter: blur(16px); border: 1px solid rgba(15,23,42,.08); }
-.seg { display:flex; gap:6px; background: rgba(15,23,42,.04); padding: 4px; border-radius: 999px; }
-.seg button { padding: 6px 10px; border-radius: 999px; font-size: 11px; font-weight: 800; color: rgba(15,23,42,.6); transition: all .2s; }
-.seg button.active { background: #fff; color: #0f172a; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
-.chip { border: 1px solid rgba(15,23,42,.08); background: #fff; padding: 6px 12px; border-radius: 999px; font-size: 11px; font-weight: 800; color: rgba(15,23,42,.6); transition: all .2s; }
-.chip.active { background: #e0e7ff; border-color: #6366f1; color: #4338ca; }
 .sheet { transform: translateY(110%); opacity: 0; transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .sheet.open { transform: translateY(0); opacity: 1; }
 

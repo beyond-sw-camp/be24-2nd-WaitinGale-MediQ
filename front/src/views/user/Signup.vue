@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, computed, ref } from 'vue' //  ref 추가됨
+import { reactive, computed, ref } from 'vue'
 import api from '@/api/user'
 import { useRouter } from 'vue-router'
 
@@ -21,7 +21,7 @@ const signupInputError = reactive({
 })
 
 
-// 1. 비밀번호 강도 계산
+// 비밀번호 강도 계산
 const passwordStrength = computed(() => {
   const pw = signupForm.password
   if (!pw) return { score: 0, label: '', color: 'text-slate-400', bg: 'bg-slate-200' }
@@ -44,7 +44,7 @@ const passwordStrength = computed(() => {
   return { score: 3, label: '상 (강함)', color: 'text-green-500', bg: 'bg-green-500' }
 })
 
-// 2. 유효성 검사 규칙들
+// 유효성 검사 규칙들
 
 // [이름]
 const nameRules = () => {
@@ -80,7 +80,7 @@ const emailRules = () => {
 const phoneNumberRules = () => {
   const phoneNumber = signupForm.phoneNumber
 
-  // 1. 빈 값 체크
+  // 빈 값 체크
   if (!phoneNumber) {
     signupInputError.phoneNumber.errorMessage = '휴대폰 번호를 입력해주세요.'
     signupInputError.phoneNumber.isValid = false
@@ -89,7 +89,7 @@ const phoneNumberRules = () => {
 
   
 
-  // 2. 정규식 체크 (하이픈 없는 숫자 10~11자리)
+  // 정규식 체크 (하이픈 없는 숫자 10~11자리)
   const phoneRegex = /^01([0|1|6|7|8|9])\d{7,8}$/
   if (!phoneRegex.test(phoneNumber)) {
     signupInputError.phoneNumber.errorMessage = '올바른 휴대폰 번호 형식이 아닙니다.'
@@ -97,7 +97,7 @@ const phoneNumberRules = () => {
     return false
   }
 
-  // 3. 통과
+  // 통과
   signupInputError.phoneNumber.errorMessage = ''
   signupInputError.phoneNumber.isValid = true
   return true
@@ -142,7 +142,7 @@ const isFormValid = () => {
          // && signupInputError.passwordConfirm.isValid
 }
 
-// 3. 회원가입 실행 함수
+// 회원가입 실행 함수
 const signup = async () => {
   const isNameValid = nameRules()
   const isEmailValid = emailRules()

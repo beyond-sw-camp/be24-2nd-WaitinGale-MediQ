@@ -1,15 +1,13 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import useAuthStore from '@/stores/useAuthStore'; // [중요] 중괄호 {} 없이 import 해야 합니다.
+import useAuthStore from '@/stores/useAuthStore';
 
 const router = useRouter();
-const authStore = useAuthStore(); // Pinia 스토어 초기화
+const authStore = useAuthStore();
 
-// 부모에게 "메뉴 바꼈다"고 알리기 위함
 const emit = defineEmits(['change-tab']);
 
-// 현재 선택된 탭 상태
 const currentTab = ref('hospital');
 
 const changeTab = (tabName) => {
@@ -17,12 +15,9 @@ const changeTab = (tabName) => {
   emit('change-tab', tabName); // 부모에게 알림
 };
 
-
-// [추가] 로그인 후 사용자 이름 가져오기 (computed로 반응형 처리)
 const username = computed(() => {
   if (authStore.isLogin) {
     try {
-      // 스토어의 getUsername 함수 호출
       return authStore.getUsername() || '사용자'; 
     } catch (e) {
       console.error('사용자 정보 로드 실패:', e);
@@ -32,14 +27,10 @@ const username = computed(() => {
   return '';
 });
 
-// [추가] 로그아웃 로직
 const handleLogout = () => {
   authStore.logout();
-  // 로그아웃 후 메인이나 로그인 페이지로 이동하고 싶다면 아래 주석 해제
-  // router.push('/login'); 
 };
 
-// [추가] 새로고침 시 로그인 상태 유지를 위해 확인
 onMounted(() => {
   authStore.checkLogin();
 });
@@ -47,7 +38,6 @@ onMounted(() => {
 </script>
 
 <template>
-<!-- <div class="hidden md:flex w-64 flex-col bg-white border-r border-slate-200 z-20 h-[calc(100vh-4rem)] fixed top-16 left-0"> -->
   <div class="hidden md:flex w-64 flex-col bg-white border-r border-slate-200 
             z-30 fixed top-16 left-0 
             h-[calc(100vh-4rem)]">

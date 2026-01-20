@@ -14,19 +14,16 @@ const loginForm = reactive({
 const authStore = useAuthStore()
 
 const login = async () => {
-  // [추가] 빈칸 검사 (선택 사항이지만 추천)
   if (!loginForm.email || !loginForm.password) {
     alert("이메일과 비밀번호를 입력해주세요.");
     return;
   }
 
-  //  try-catch로 감싸서 에러 방지
   try {
     const res = await api.login(loginForm)
 
     if (res.status == 200) {
       authStore.login(JSON.stringify(res.data))
-      //  '/index' 대신 '/' (메인)으로 이동
       router.push('/') 
     } 
   } catch (error) {

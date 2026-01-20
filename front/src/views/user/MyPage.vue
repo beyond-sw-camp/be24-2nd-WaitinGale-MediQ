@@ -8,17 +8,17 @@ const router = useRouter();
 const authStore = useAuthStore();
 const { userInfo } = storeToRefs(authStore);
 
-// 라우터경로 지정, 로그아웃하면 메인으로 이동 
+// 라우터 경로 지정, 로그아웃하면 메인으로 이동 
 const goToMain = () => {
     router.push('/');
 };
 
 const logout = async () => {
-    await authStore.logout(); //  스토어의 로그아웃 기능 사용 USERINFO 삭제 + 상태 초기화
+    await authStore.logout(); // 스토어의 로그아웃 기능 사용 USERINFO 삭제 + 상태 초기화
     alert("로그아웃 되었습니다."); 
     router.push('/'); 
 };
-//탭 상태 관리 반응형 이동
+// 탭 상태 관리 반응형 이동
 const currentTab = ref('medical-history'); // 기본으로 띄워지는 탭
 
 const tabs = [
@@ -27,8 +27,6 @@ const tabs = [
     { id: 'billing', label: '결제/영수증', icon: 'fa-file-invoice-dollar', color: 'emerald' },
     { id: 'results', label: '검사 결과', icon: 'fa-square-poll-vertical', color: 'amber' }
 ];
-
-//데이터들
 
 // 진료 기록 데이터
 const medicalHistoryData = ref([
@@ -50,7 +48,7 @@ const medicalHistoryData = ref([
     }
 ]);
 
-// 다음 병원 일정 데이터 (이거 안떠서 4시간동안 싸움)
+// 다음 병원 일정 데이터
 const hospitalSchedule = ref([
     {
         month: '11월',
@@ -67,17 +65,27 @@ const hospitalSchedule = ref([
         bgClass: 'bg-slate-50 text-slate-500',
     }
 ]);
-// --- 팝업(모달) 상태 관리 ---
+
+const familyMembers = ref([
+    {
+        name: '어머니',
+        icon: '👩',
+        iconBg: 'bg-rose-100',
+        status: '등록됨',
+        statusClass: 'bg-rose-50 text-rose-500',
+        hospital: '최근 진료: 내과 (2주 전)'
+    }
+]);
+
+
 const showModal = ref(false); // 팝업 표시 여부
 const newMemberName = ref(''); // 입력받을 이름
 
-// 팝업 열기
 const openAddModal = () => {
     newMemberName.value = ''; // 입력창 초기화
-    showModal.value = true;   // 팝업 켜기
+    showModal.value = true;
 };
 
-// 팝업 닫기
 const closeAddModal = () => {
     showModal.value = false;
 };
@@ -103,7 +111,7 @@ const saveFamilyMember = () => {
     closeAddModal(); // 저장 후 팝업 닫기
 };
 
-//말풍선 세모 이동하는거 (반응형)
+// 말풍선 세모 이동 (반응형)
 const arrowPosition = ref('12.5%');
 
 const updateArrowPosition = () => {
@@ -125,27 +133,19 @@ const selectedDate = ref('');   // <input type="date">와 연결될 변수
 // 달력 아이콘 클릭 시 실행될 함수
 const openDateModal = (index) => {
     editingIndex.value = index; // "몇 번째 일정을 수정 중인지" 기억
-    showDateModal.value = true; // 팝업 열기
-    
-    // (선택 사항) 현재 일정의 날짜를 가져와서 date input 초기값으로 설정하는 로직이 필요하다면 여기에 추가
-    // 예: selectedDate.value = "2026-01-18"; 
+    showDateModal.value = true;
 };
 
-// 변경된 날짜 저장 함수
 const saveNewDate = () => {
-    if (!selectedDate.value) return; // 날짜 선택 안했으면 종료
+    if (!selectedDate.value) return;
 
-    // input date의 값은 "2026-01-18" 형태의 문자열로 들어옴.
-    // 이걸 잘라서 기존 데이터 양식(월, 일)에 맞춰 넣어준다.
     const [year, month, day] = selectedDate.value.split('-'); 
 
-    // 데이터 업데이트 (반응형으로 화면도 바로 바뀜)
     hospitalSchedule.value[editingIndex.value].month = `${parseInt(month)}월`;
     hospitalSchedule.value[editingIndex.value].day = day;
-    
-    // 팝업 닫기
+
     showDateModal.value = false;
-    selectedDate.value = ''; // 초기화
+    selectedDate.value = '';
 };
 
 const selectTab = (tabId) => {
@@ -158,7 +158,6 @@ onMounted(() => {
     updateArrowPosition();
     const storedUser = localStorage.getItem('USERINFO');
     if (storedUser) {
-        // useAuthStore.js를 수정했으므로, 이제 데이터를 객체로 변환해서 넣어도 됩니다.
         try {
             authStore.userInfo = JSON.parse(storedUser);
             console.log("데이터 복구 성공:", authStore.userInfo);
@@ -436,7 +435,6 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-/* 말풍선 효과 */
 .speech-bubble {
     position: relative;
     background: white;
@@ -456,7 +454,6 @@ onUnmounted(() => {
     transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 활성화된 버튼 스타일 */
 .active-btn {
     border-color: currentColor !important;
     box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);

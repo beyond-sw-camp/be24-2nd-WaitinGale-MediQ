@@ -1,6 +1,5 @@
 <template>
   <div class="text-slate-900 pb-32">
-    <!-- NAV -->
     <nav class="sticky top-0 z-50 glass-nav">
       <div class="max-w-2xl mx-auto px-6 h-16 flex items-center justify-between">
         <button @click="goBack" class="text-slate-400 hover:text-slate-600 transition">
@@ -12,7 +11,6 @@
     </nav>
 
     <main class="max-w-2xl mx-auto px-6 py-8">
-      <!-- 병원 정보 -->
       <div class="bg-white p-6 rounded-[24px] border border-slate-100 shadow-sm mb-8 flex items-center gap-4">
         <div class="w-14 h-14 bg-indigo-50 text-indigo-500 rounded-2xl flex items-center justify-center text-2xl">
           <i class="fa-solid fa-hospital"></i>
@@ -23,7 +21,6 @@
         </div>
       </div>
 
-      <!-- 날짜 선택 -->
       <section class="mb-10">
         <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
           <i class="fa-regular fa-calendar text-indigo-500"></i> 날짜 선택
@@ -53,7 +50,6 @@
         </div>
       </section>
 
-      <!-- 시간 선택 -->
       <section class="mb-10">
         <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
           <i class="fa-regular fa-clock text-indigo-500"></i> 시간 선택
@@ -105,7 +101,6 @@
 
       </section>
 
-      <!-- 의료진 선택 -->
       <section class="mb-10">
         <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
           <i class="fa-solid fa-user-doctor text-indigo-500"></i> 의료진 선택
@@ -153,7 +148,6 @@
         </div>
       </section>
 
-      <!-- 예약자 정보 -->
       <section>
         <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
           <i class="fa-solid fa-address-card text-indigo-500"></i> 예약자 정보
@@ -167,7 +161,6 @@
       </section>
     </main>
 
-    <!-- 하단 버튼 -->
     <div class="fixed bottom-0 left-0 right-0 p-6 bg-white/80 backdrop-blur-lg border-t border-slate-100 z-50">
       <div class="max-w-2xl mx-auto">
         <RouterLink
@@ -195,7 +188,6 @@ const goToReservationHome = () => {
     query: { mode: 'reservation' }
   })
 }
-// 여기까지
 const selectedDate = ref(14)
 const selectedTime = ref(null)
 const selectedDoctor = ref(1)
@@ -253,8 +245,6 @@ function confirmBooking() {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap');
-
 .glass-nav {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);

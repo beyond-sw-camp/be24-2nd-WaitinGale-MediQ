@@ -10,9 +10,7 @@
         <template v-if="mode === 'hospital' || mode === 'pharmacy'">
           <div class="flex-1 bg-slate-100 relative z-0 transition-all duration-300">
             <MainMap
-              ref="mapRef" 
-              :favorites="favorites"
-              :mode="mode" 
+              ref="mapRef" :favorites="favorites" :mode="mode"
               @update-hospitals="updateList" 
               @toggle-favorite="handleToggleFavorite"
               @switch-mode-to-pharmacy="mode = 'pharmacy'"
@@ -44,13 +42,7 @@
         </template>
 
         <div v-else-if="mode === 'reservation'" class="flex-1 bg-white p-10 overflow-y-auto z-10 md:pl-72">
-           <!-- <h2 class="text-2xl font-black text-slate-900 mb-6">나의 예약 내역</h2> -->
            <div class="space-y-4">
-             <!-- <div class="p-12 border border-slate-200 rounded-3xl bg-slate-50 text-center text-slate-500 flex flex-col items-center justify-center gap-4"> -->
-               <!-- <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm">
-                 <i class="fa-regular fa-calendar-check text-2xl text-indigo-400"></i>
-               </div> -->
-               <!-- <p class="font-bold">아직 예약된 내역이 없습니다.</p> -->
               <Booking />  
              </div>
            </div>
@@ -61,29 +53,31 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+
 import LeftSideBar from '@/components/layout/LeftSideBar.vue';
 import Header from '@/components/layout/Header.vue';
 import MainMap from '@/components/MainMap.vue';
 import MainList from '@/components/MainList.vue';
-import Booking from '@/components/Waiting.vue'
+import Booking from '@/components/Waiting.vue';
 
 
 
-import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
 const router = useRouter()
 const mode = ref('hospital')
 
 onMounted(() => {
+  // URL 쿼리로 모드 설정
   if (route.query.mode) {
-    mode.value = route.query.mode
-    
-    router.replace({ path: '/' })
+    mode.value = route.query.mode;
+    router.replace({ path: '/' });
   }
-})
 
-
+  const saved = localStorage.getItem('myFavorites');
+  if (saved) favorites.value = JSON.parse(saved);
+});
 
 
 
@@ -128,7 +122,6 @@ const changeMode = (newMode) => {
   places.value = []; 
   isListOpen.value = true;
   selectedPlace.value = null; 
-  // if (mapRef.value) mapRef.value.resetToGeneralMode();
 };
 
 watch(isListOpen, () => {
@@ -137,11 +130,6 @@ watch(isListOpen, () => {
       mapRef.value.resizeMap();
     }
   }, 350);
-});
-
-onMounted(() => {
-  const saved = localStorage.getItem('myFavorites');
-  if (saved) favorites.value = JSON.parse(saved);
 });
 </script>
 

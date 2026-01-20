@@ -8,7 +8,6 @@ const state = reactive({
   phone: ''
 });
 const sanitizePhoneNumber = (event) => {
-  // 숫자 이외의 문자 제거
   let value = event.target.value.replace(/[^0-9]/g, '');
   
   // 11자리 넘으면 자르기

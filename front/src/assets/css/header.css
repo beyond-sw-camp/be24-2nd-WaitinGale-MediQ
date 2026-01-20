@@ -3,7 +3,7 @@
 .border-point-yellow { border-color: #FACC15; }
 .ring-point-yellow { --tw-ring-color: #FACC15; }
 
-/* ✅ 헤더 네비 호버 서브메뉴 */
+/* 헤더 네비 호버 서브메뉴 */
 .nav-item { position: relative; }
 .nav-panel {
   position: absolute;
@@ -28,11 +28,11 @@
     left: -12px;
     right: -12px;
     top: 100%;
-    height: 20px;          /* ✅ 14px보다 크게 (안 끊기게) */
+    height: 20px;
     background: transparent;
 }
 
-/* ✅ (추가) submenu 자체 hover 중에도 유지 (안전망) */
+/* submenu 자체 hover 중에도 유지 (안전망) */
     .nav-item:hover .nav-panel,
     .nav-item:hover::after{
     opacity: 1;
@@ -40,7 +40,6 @@
     pointer-events: auto;
 }
 
-/* ✅ (수정) 명함은 hover가 아니라 클릭으로도 카드처럼 뜨게 */
 html.namecard-open #flyout-namecard .nav-panel{
   opacity: 1 !important;
   visibility: visible !important;
@@ -48,7 +47,6 @@ html.namecard-open #flyout-namecard .nav-panel{
   transform: translateX(-50%) translateY(0) !important;
 }
 
-/* ✅ "명함 옆 이모지"로 전체 메뉴(4개 패널) 펼치기: 겹치지 않게 */
 .menu-open #mainNav{
   display: grid !important;
   position: fixed;
@@ -124,7 +122,6 @@ html.namecard-open #flyout-namecard .nav-panel{
   }
 }
 
-/* ✅ 이모지(전체메뉴 버튼)에는 hover로 패널이 뜨면 안됨 */
 #menuBtn:hover + a + .nav-panel,
 #menuBtn:hover ~ .nav-panel{
   opacity: 0 !important;
@@ -133,7 +130,6 @@ html.namecard-open #flyout-namecard .nav-panel{
   transform: translateX(-50%) !important;
 }
 
-/* ✅ 로그인/회원가입 팝업 */
 .modal-backdrop{
       position: fixed;
       inset: 0;
@@ -157,13 +153,13 @@ html.namecard-open #flyout-namecard .nav-panel{
       transform: translateX(-50%);
       width: min(420px, calc(100vw - 32px));
     }
-    /* ===== 기본(light) 헤더 ===== */
+    /* 기본(light) 헤더 */
 header{
   background: rgba(255,255,255,.85);
   color: #111827;
 }
 
-/* ===== dark일 때만 ===== */
+/* dark일 때만 */
 html.dark header{
   background: rgba(24,24,27,.9);
   color: #e5e7eb;

@@ -11,7 +11,6 @@ const state = reactive({
 
 
 const sendResetEmail = async () => {
-    // 1. 빈칸 검사
     if (!state.email) {
         alert("이메일을 입력해주세요.");
         return;
@@ -19,13 +18,9 @@ const sendResetEmail = async () => {
 
     try {
         console.log("이메일 전송 시도:", state.email);
-        
-        // 2. 서버 요청 (api 함수 이름 확인 필요)
-        // await api.resetPassword(state); 
-        
-        // 3. 성공 시 처리
+
         alert("인증 메일을 보냈습니다! 메일함을 확인해주세요.");
-        router.push('/user/login'); // 로그인 페이지로 이동
+        router.push('/user/login');
 
     } catch (error) {
         console.error(error);

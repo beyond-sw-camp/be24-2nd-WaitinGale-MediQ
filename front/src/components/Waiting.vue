@@ -2,15 +2,12 @@
 import { reactive, ref, computed, onMounted, defineProps, watch } from 'vue'
 
 const props = defineProps(['initialData'])
+const wsUri = "wss://www.mediq.kro.kr/ws/chat";
 
-const wsUri = 'ws://127.0.0.1:8080/ws/chat' // 웹소켓 주소
 let websocket = null
 
 const connected = ref(false)
-
-// 상태 관리: 'input' (입력) -> 'review' (확인) -> 'registered' (완료)
 const processStep = ref('input') 
-
 const currentNickname = ref('')
 const searchKeyword = ref('')
 const isSearching = ref(false)
@@ -85,7 +82,6 @@ const myQueue = computed(() =>
 )
 
 const estimatedWaitTime = computed(() => {
-  // 내가 대기중이면 내 순서 기준, 아니면 전체 대기 인원 기준
   const count = myQueue.value ? (myQueue.value.position - 1) : hospital.queue.length
   return count * AVG_MIN_PER_PERSON
 })
@@ -95,19 +91,15 @@ function initFromProps() {
   if (props.initialData && props.initialData.hospital) {
     const data = props.initialData.hospital
     
-    // 받아온 병원 정보로 세팅
     hospital.name = data.name
     hospital.id = data.id || 'hospital1'
     searchKeyword.value = data.name
     
-    // 문진표에서 넘어왔을 땐 바로 'input' 단계 유지하되, 병원 정보가 채워져 있음
+    // 문진표에서 넘어왔을 땐 바로 input 단계 유지하되, 병원 정보가 채워져 있음
     console.log("문진표 연동 완료:", hospital.name)
   }
 }
 
-// --- UI 로직 (디자인 코드에서 가져온 부분들) ---
-
-// 병원 검색 (직접 '나의 예약' 탭으로 들어온 경우)
 function searchHospital() {
   if (!searchKeyword.value) {
     alert('병원 이름을 입력해주세요')
@@ -117,16 +109,9 @@ function searchHospital() {
   setTimeout(() => {
     hospital.name = searchKeyword.value
     isSearching.value = false
-    // 검색 시에는 데모 데이터 초기화 (웹소켓 연결 전이라 가정)
-    /* hospital.queue = [
-        { nickname: '김철수', timestamp: '14:20', position: 1 },
-        { nickname: '이영희', timestamp: '14:25', position: 2 }
-    ]
-    */
   }, 500)
 }
 
-// 1단계: 접수 정보 확인 (Review 단계로 이동)
 function checkInfo() {
   if (!hospital.name || hospital.name === '병원을 검색해주세요') {
     alert('먼저 병원을 검색하여 선택해주세요.')
@@ -139,26 +124,22 @@ function checkInfo() {
   processStep.value = 'review'
 }
 
-// 2단계: 최종 접수 (Registered 단계로 이동 + 웹소켓 전송)
 function joinQueue() {
   if (!websocket || websocket.readyState !== WebSocket.OPEN) {
     alert('서버와 연결되지 않았습니다.')
     return
   }
 
-  // 서버 전송
   websocket.send(JSON.stringify({
     action: 'join',
     hospital: hospital.id,
     nickname: currentNickname.value
   }))
   
-  // 낙관적 UI 업데이트 (서버 응답 기다리지 않고 바로 넘김)
   addToQueue(currentNickname.value)
   processStep.value = 'registered'
 }
 
-// 접수 취소
 function cancelQueue() {
   if (!confirm('대기를 취소하시겠습니까?')) return
   
@@ -190,8 +171,8 @@ function setNickname() {
 
 
 onMounted(() => {
-  initFromProps()   // 1. 데이터 세팅
-  connectWebSocket() // 2. 소켓 연결
+  initFromProps()
+  connectWebSocket()
 })
 
 // 데이터가 늦게 들어올 경우 대비
@@ -201,23 +182,7 @@ watch(() => props.initialData, () => {
 </script>
 
 <template>
-  <!-- <div class="app-container md:pl-96"> -->
-    <!-- <header class="app-header">
-      <div class="header-content">
-        <div class="brand">
-          <div class="logo-icon"><i class="fa-solid fa-notes-medical"></i></div>
-          <h1 class="app-title">MediQ 실시간 대기</h1>
-        </div>
-        <div class="status-indicator" :class="{ connected: connected }">
-          <span class="dot"></span>
-          {{ connected ? '연결됨' : '연결 끊김' }}
-        </div>
-      </div>
-    </header> -->
-
     <main class="main-layout md:pl-96 ">
-  
-      
       <section class="left-panel">
         
         <div class="hospital-card">
@@ -370,10 +335,8 @@ watch(() => props.initialData, () => {
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
-/* --- 기본 레이아웃 및 폰트 --- */
 .app-container {
   font-family: 'Pretendard', sans-serif;
   background-color: #F1F5F9; 
@@ -385,7 +348,6 @@ watch(() => props.initialData, () => {
   overflow: hidden;
 }
 
-/* --- 헤더 --- */
 .app-header {
   background: white;
   height: 60px;
@@ -456,7 +418,6 @@ watch(() => props.initialData, () => {
   border-radius: 50%;
 }
 
-/* --- 메인 레이아웃 (반응형) --- */
 .main-layout {
   flex: 1;
   display: flex;
@@ -491,14 +452,12 @@ watch(() => props.initialData, () => {
   }
 }
 
-/* --- 왼쪽 패널 스타일 --- */
 .left-panel {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-/* 병원 정보 카드 */
 .hospital-card {
   background: white;
   border-radius: 20px;
@@ -626,7 +585,6 @@ watch(() => props.initialData, () => {
   color: #0F172A;
 }
 
-/* 입력 박스 */
 .input-box {
   background: white;
   border-radius: 20px;
@@ -678,7 +636,6 @@ watch(() => props.initialData, () => {
   flex-shrink: 0;
 }
 
-/* 검토 카드 (Review Card) */
 .review-card {
   background: white;
   border-radius: 20px;
@@ -749,7 +706,6 @@ watch(() => props.initialData, () => {
   transform: scale(0.98);
 }
 
-/* 내 티켓 스타일 */
 .ticket-card {
   background: #0F172A;
   color: white;
@@ -850,7 +806,6 @@ watch(() => props.initialData, () => {
   border: 1px solid #EF4444;
 }
 
-/* --- 오른쪽 패널 (대기열) --- */
 .right-panel {
   background: white;
   border-radius: 20px;
@@ -966,7 +921,6 @@ watch(() => props.initialData, () => {
   border-radius: 4px;
 }
 
-/* 빈 상태 */
 .empty-state {
   height: 100%;
   display: flex;
@@ -982,8 +936,6 @@ watch(() => props.initialData, () => {
   font-size: 32px;
   opacity: 0.5;
 }
-
-/* 애니메이션 */
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -1000,7 +952,6 @@ watch(() => props.initialData, () => {
   animation: fadeIn 0.3s ease-out forwards;
 }
 
-/* 스크롤바 커스텀 */
 ::-webkit-scrollbar {
   width: 6px;
 }

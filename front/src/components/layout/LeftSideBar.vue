@@ -11,10 +11,17 @@ const changeTab = (tabName) => {
   currentTab.value = tabName;
   emit('change-tab', tabName); // 부모에게 알림
 };
+
+
+
 </script>
 
 <template>
-<div class="hidden md:flex w-64 flex-col bg-white border-r border-slate-200 z-20 h-[calc(100vh-4rem)] fixed top-16 left-0">
+<!-- <div class="hidden md:flex w-64 flex-col bg-white border-r border-slate-200 z-20 h-[calc(100vh-4rem)] fixed top-16 left-0"> -->
+  <div class="hidden md:flex w-64 flex-col bg-white border-r border-slate-200 
+            z-30 fixed top-16 left-0 
+            h-[calc(100vh-4rem)]">
+
     
     <!-- <div class="h-16 flex items-center px-6 border-b border-slate-100 shrink-0">
       <a href="#" class="flex items-center gap-2">

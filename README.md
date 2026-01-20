@@ -5,10 +5,10 @@
 
 ## 📍👨‍💻👩‍💻**Team Introduction**
 
-### - 👨‍💻 [권민석](https://github.com/RIMIN0650) — Backend
-### - 👩‍💻 [김미정](https://github.com/mihub02) — Backend
-### - 👨‍💻 [노승찬](https://github.com/seungchan-0629) — Backend
-### - 👨‍💻 [이한별](https://github.com/sole0714) — Backend
+### - 👨‍💻 [권민석](https://github.com/RIMIN0650) — Frontend
+### - 👩‍💻 [김미정](https://github.com/mihub02) — Frontend
+### - 👨‍💻 [노승찬](https://github.com/seungchan-0629) — Frontend
+### - 👨‍💻 [이한별](https://github.com/sole0714) — Frontend
 
 #
 
@@ -84,6 +84,7 @@
 
 ## 📍 요구사항 정의서
 <summary>시스템 아키텍쳐 펼쳐보기</summary>
+
 
 
 

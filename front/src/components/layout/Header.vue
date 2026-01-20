@@ -7,7 +7,7 @@
 
     <div class="hidden md:flex w-60 flex-col bg-white z-20">
          <div class="w-64 h-16 flex items-center px-0 border-b border-slate-100">
-            <a href="#" class="flex items-center gap-2">
+            <a href="/" class="flex items-center gap-2">
              <img src="@/assets/image/mediQ_logo.png" alt="Logo" class="w-8 h-8 object-contain" @error="e => (e.target.src = 'https://via.placeholder.com/32')">
              <span class="text-xl font-black tracking-tight text-slate-900">MediQ</span>
              </a>

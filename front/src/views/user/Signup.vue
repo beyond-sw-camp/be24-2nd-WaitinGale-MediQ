@@ -217,7 +217,7 @@ if (!isNameValid || !isEmailValid || !isPwValid || !isPhoneValid) {
             @blur="phoneNumberRules()" 
             @input="sanitizePhoneNumber"
             v-model="signupForm.phoneNumber"
-            type="tel" id="phoneNumber" placeholder="010-0000-0000" maxlength="9"
+            type="tel" id="phoneNumber" placeholder="010-0000-0000" maxlength="11"
             class="bg-slate-50 w-full rounded-2xl px-4 py-3 border border-slate-100 outline-none text-sm"
           />
           <p v-if="signupInputError.phoneNumber.errorMessage" class="text-red-500 text-xs mt-1 ml-1">

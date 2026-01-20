@@ -1,59 +1,67 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import api from '@/api/user' // [중요] api 파일 임포트 필요 (Login.vue 참고함)
+import api from '@/api/user'
 
 const useAuthStore = defineStore('auth', () => {
+  // 1. 마이페이지용 변수 (이게 있어야 연동됨!)
+  const userInfo = ref(null) 
   const isLogin = ref(false)
 
-  const login = (userInfo) => {
+  // 2. Login.vue 호환 함수
+  const login = (userString) => {
     isLogin.value = true
-    localStorage.setItem('USERINFO', userInfo)
+    localStorage.setItem('USERINFO', userString) 
+    // 문자열을 받아서 스토어에는 객체로 저장 (마이페이지를 위해)
+    try {
+      userInfo.value = JSON.parse(userString)
+    } catch (e) {
+      console.error('파싱 에러', e)
+    }
   }
 
+  // 3. 새로고침 호환 함수
   const checkLogin = () => {
-    const userInfo = localStorage.getItem('USERINFO')
-    if (userInfo) {
+    const storedUser = localStorage.getItem('USERINFO')
+    if (storedUser) {
       isLogin.value = true
+      try {
+        userInfo.value = JSON.parse(storedUser)
+      } catch (e) {
+        userInfo.value = null
+      }
     }
     return isLogin.value
   }
 
-  // [수정] 로그아웃 로직 개선
+  // 4. 로그아웃 함수
   const logout = async () => {
     try {
-      // 1. 서버에 로그아웃 요청 (서버에서 쿠키를 만료시키도록 함)
-      // api.user.js에 logout 함수가 정의되어 있어야 합니다.
-      if (api.logout) {
-        await api.logout();
-      }
+      if (api.logout) await api.logout();
     } catch (error) {
-      console.error('로그아웃 API 호출 실패:', error);
+      console.error('로그아웃 에러:', error);
     } finally {
-      // 2. 클라이언트 데이터 삭제 (토큰 등)
       localStorage.removeItem('USERINFO');
-      
-      // 3. 상태 초기화 (이게 빠지면 화면이 안 바뀜)
       isLogin.value = false;
-      
-      // 4. (선택) 메모리에 남은 데이터까지 깔끔하게 날리려면 새로고침
-      // window.location.href = '/login'; 
+      userInfo.value = null;
     }
   }
 
+  // 5. LeftSideBar.vue 호환 함수 (이게 있어서 사이드바 수정 불필요!)
   const getUsername = () => {
-    // 예외 처리 추가 (데이터가 없을 때 에러 방지)
+    // 스토어에 있으면 그거 쓰고, 없으면 로컬스토리지 뒤져서 리턴
+    if (userInfo.value?.userName) return userInfo.value.userName;
+    
     const stored = localStorage.getItem('USERINFO')
     if (!stored) return ''
-    
     try {
-      const userInfo = JSON.parse(stored)
-      return userInfo.userName || userInfo.username // 대소문자 주의
+      const parsed = JSON.parse(stored)
+      return parsed.userName || parsed.username
     } catch (e) {
       return ''
     }
   }
 
-  return { isLogin, checkLogin, login, getUsername, logout }
+  return { isLogin, userInfo, checkLogin, login, logout, getUsername }
 })
 
 export default useAuthStore

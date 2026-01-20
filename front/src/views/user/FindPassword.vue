@@ -40,7 +40,7 @@ const sendResetEmail = async () => {
 
     <div class="w-full max-w-md">
         <div class="text-center mb-10">
-            <RouterLink to="/user/login" class="inline-block">
+            <RouterLink to="/" class="inline-block">
                 <img src="@/assets/image/mediQ_logo.png" alt="MediQ Logo" class="w-16 h-16 object-contain mx-auto">
             </RouterLink>
             <h2 class="text-xl font-bold text-slate-900 mt-6">비밀번호 재설정</h2>

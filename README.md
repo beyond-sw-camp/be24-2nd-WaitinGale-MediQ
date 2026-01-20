@@ -81,7 +81,7 @@
 
 ## 🖥 [Fiqma](https://www.figma.com/design/EdBkF3CGfamwsIXKMQiJQq/waitinGale?node-id=0-1&t=wz3RvfQ1GRJDqk0B-1/)
 
-## 📍 요구사항 정의서
+## 🏥 [MediQ](https://www.mediq.kro.kr/)
 
 ## 📍 주요 기능 구현 영상
 <details>
@@ -117,6 +117,7 @@
 <summary>마이페이지 관리 기능 구현 영상</summary>
 
 </details>
+
 
 
 

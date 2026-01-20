@@ -89,8 +89,7 @@
 
 <p align="center">
 
-<video src="[회원가입.mp4](https://github.com/user-attachments/assets/bff3cb57-7218-44f9-9204-012e3a812ca0)" controls="controls" width="100%"></video>
-
+<video src="![회원가입](https://github.com/user-attachments/assets/db6eb5b8-d637-47c8-b799-4bfa20a0bb59)" controls="controls" width="100%"></video>
 
 </details>
 
@@ -119,6 +118,7 @@
 <summary>마이페이지 관리 기능 구현 영상</summary>
 
 </details>
+
 
 
 

@@ -88,7 +88,7 @@
 <summary>회원가입 기능 구현 영상</summary>
 
 <p align="center">
-<img src="(https://github.com/user-attachments/assets/c00db255-a28e-4b60-8382-e230ac378cbd)">
+![회원가입](https://github.com/user-attachments/assets/2da7e8f4-53cd-4a34-bd22-1d28456bdd16)
 
 </details>
 
@@ -117,6 +117,7 @@
 <summary>마이페이지 관리 기능 구현 영상</summary>
 
 </details>
+
 
 
 

@@ -89,7 +89,8 @@
 
 <p align="center">
 
-<video src="![회원가입](https://github.com/user-attachments/assets/db6eb5b8-d637-47c8-b799-4bfa20a0bb59)" controls="controls" width="100%"></video>
+![회원가입](https://github.com/user-attachments/assets/c2dbeee7-c155-4c19-8577-566a469c88db)
+
 
 </details>
 
@@ -118,6 +119,7 @@
 <summary>마이페이지 관리 기능 구현 영상</summary>
 
 </details>
+
 
 
 

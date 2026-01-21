@@ -86,8 +86,6 @@
 ## 📍 주요 기능 구현 영상
 <details>
 <summary>회원가입 기능 구현 영상</summary>
-
-<p align="center">
   
 ![회원가입](https://github.com/user-attachments/assets/c2dbeee7-c155-4c19-8577-566a469c88db)
   
@@ -127,6 +125,7 @@
 ![마이페이지](https://github.com/user-attachments/assets/256542d6-c549-43a6-98cb-8e491fe38172)
 
 </details>
+
 
 
 

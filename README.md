@@ -88,37 +88,46 @@
 <summary>회원가입 기능 구현 영상</summary>
 
 <p align="center">
-
+  
 ![회원가입](https://github.com/user-attachments/assets/c2dbeee7-c155-4c19-8577-566a469c88db)
-
-
+  
 </details>
 
 <details>
 <summary>로그인 기능 구현 영상</summary>
+  
+![로그인](https://github.com/user-attachments/assets/7c2e6bc5-9fa6-447c-b1a7-a4cfad305c7d)
 
 </details>
 
 <details>
 <summary>주변 병원 찾기 기능 구현 영상</summary>
+  
+![주변 병원 찾기](https://github.com/user-attachments/assets/c71d0194-9736-4a30-bf0d-0f4484104081)
 
 </details>
 
 <details>
-<summary>병원 예약 및 대기열 확인 기능 구현 영상</summary>
+<summary>문진표 작성 후 예약 기능 구현 영상</summary>
+
+![문진표 작성 후 예약](https://github.com/user-attachments/assets/5d9a33cd-7206-43fd-9b87-b08a6e587331)
 
 </details>
 
 <details>
 <summary>주변 약국 찾기 기능 구현 영상</summary>
 
+![주변약국 조회](https://github.com/user-attachments/assets/6523005e-7967-4ad4-ad54-c0a8f5ec37c0)
 
 </details>
 
 <details>
 <summary>마이페이지 관리 기능 구현 영상</summary>
 
+![마이페이지](https://github.com/user-attachments/assets/256542d6-c549-43a6-98cb-8e491fe38172)
+
 </details>
+
 
 
 

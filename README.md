@@ -81,7 +81,7 @@
 
 ## 🖥 [Fiqma](https://www.figma.com/design/EdBkF3CGfamwsIXKMQiJQq/waitinGale?node-id=0-1&t=wz3RvfQ1GRJDqk0B-1/)
 
-## 🏥 [MediQ 바로가기](https://www.mediq.kro.kr/)
+## 🏥 [MediQ 바로가기](https://www.medimedi.kro.kr/)
 
 ## 📍 주요 기능 구현 영상
 <details>
